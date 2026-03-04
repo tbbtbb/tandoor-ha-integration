@@ -125,17 +125,33 @@ class TandoorDataUpdateCoordinator(DataUpdateCoordinator):
         return data
 
     async def _fetch_meal_plan(self) -> dict:
-        """Fetch meal plan from Tandoor API."""
-        url = f"{self._base_url}{API_MEAL_PLAN}?format=json&space={self._space_id}"
-        async with self.session.get(url, headers=self._headers, timeout=aiohttp.ClientTimeout(total=10)) as resp:
-            if resp.status == 401:
-                raise UpdateFailed("Invalid API token (401 Unauthorized)")
-            if resp.status == 403:
-                raise UpdateFailed(
-                    f"Permission denied (403). Check that space_id={self._space_id} is correct."
-                )
-            resp.raise_for_status()
-            return await resp.json()
+        """Fetch meal plan from Tandoor API – alle Eintraege ab heute via Paginierung."""
+        from datetime import date, timedelta
+        from_date = (date.today() - timedelta(days=1)).isoformat()
+        to_date = (date.today() + timedelta(days=14)).isoformat()
+
+        all_results = []
+        url = (
+            f"{self._base_url}{API_MEAL_PLAN}?format=json"
+            f"&from_date={from_date}&to_date={to_date}&page_size=100"
+        )
+
+        while url:
+            async with self.session.get(
+                url, headers=self._headers, timeout=aiohttp.ClientTimeout(total=10)
+            ) as resp:
+                if resp.status == 401:
+                    raise UpdateFailed("Invalid API token (401 Unauthorized)")
+                if resp.status == 403:
+                    raise UpdateFailed(
+                        f"Permission denied (403). Check that space_id={self._space_id} is correct."
+                    )
+                resp.raise_for_status()
+                data = await resp.json()
+                all_results.extend(data.get("results", []))
+                url = data.get("next")
+
+        return {"results": all_results, "count": len(all_results)}
 
     async def _fetch_shopping(self) -> dict:
         """Fetch shopping list entries from Tandoor API."""
