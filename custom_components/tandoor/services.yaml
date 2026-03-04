@@ -1,0 +1,11 @@
+load_from_tandoor:
+  name: Tandoor laden
+  description: Lädt Meal-Plan und Shopping-Liste aus Tandoor und zeigt eine Zusammenfassung.
+
+sync_to_bring:
+  name: Zutaten zu Bring! senden
+  description: Sendet alle ungecheckten Tandoor-Zutaten an Bring! und hakt sie in Tandoor ab. Duplikate werden per Fuzzy-Match übersprungen.
+
+reset_status:
+  name: Status zurücksetzen
+  description: Setzt den internen Sync-Status zurück.

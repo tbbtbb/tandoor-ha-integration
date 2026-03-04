@@ -1,0 +1,14 @@
+{
+  "domain": "tandoor",
+  "name": "Tandoor Recipes",
+  "version": "1.0.0",
+  "documentation": "https://github.com/tbbtbb/tandoor-ha-integration",
+  "issue_tracker": "https://github.com/tbbtbb/tandoor-ha-integration/issues",
+  "requirements": [
+    "aiohttp>=3.8.0",
+    "asyncssh>=2.13.0"
+  ],
+  "codeowners": ["tbbtbb"],
+  "iot_class": "local_polling",
+  "config_flow": true
+}

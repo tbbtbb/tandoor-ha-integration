@@ -1,0 +1,56 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Tandoor Connection",
+        "description": "Enter your Tandoor credentials. Find your API token at /api/user-token-create/.",
+        "data": {
+          "tandoor_url": "Tandoor URL",
+          "api_token": "API Token",
+          "space_id": "Space ID",
+          "update_interval": "Update Interval (seconds)"
+        }
+      },
+      "bring": {
+        "title": "Bring! Integration (Optional)",
+        "description": "Optionally connect Tandoor to your Bring! shopping list.",
+        "data": {
+          "enable_bring": "Enable Bring! Integration",
+          "bring_entity": "Bring! Todo Entity",
+          "auto_sync": "Auto-sync"
+        }
+      },
+      "backup": {
+        "title": "Backup Monitoring (Optional)",
+        "description": "Optionally monitor Proxmox backups via SSH.",
+        "data": {
+          "enable_backup": "Enable Backup Monitoring",
+          "proxmox_host": "Proxmox Host IP",
+          "container_id": "LXC Container ID",
+          "ssh_user": "SSH User",
+          "ssh_password": "SSH Password (optional)",
+          "ssh_key": "SSH Key Path (optional)"
+        }
+      },
+      "versions": {
+        "title": "Version Check (Optional)",
+        "description": "Optionally monitor Tandoor updates via GitHub.",
+        "data": {
+          "enable_version_check": "Enable GitHub Update Check",
+          "enable_docker_version": "Check installed Docker version via SSH"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect to Tandoor. Check the URL.",
+      "invalid_token": "Invalid API token (401 Unauthorized).",
+      "invalid_space": "Invalid Space ID or insufficient permissions (403 Forbidden).",
+      "ssh_cannot_connect": "Cannot connect to Proxmox via SSH.",
+      "ssh_auth_failed": "SSH authentication failed. Check password/key.",
+      "asyncssh_missing": "asyncssh not installed. Check requirements."
+    },
+    "abort": {
+      "already_configured": "Tandoor is already configured."
+    }
+  }
+}

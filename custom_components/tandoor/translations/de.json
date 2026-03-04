@@ -1,0 +1,98 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Tandoor Verbindung",
+        "description": "Bitte gib die Zugangsdaten für deine Tandoor-Instanz ein. Den API-Token findest du unter /api/user-token-create/.",
+        "data": {
+          "tandoor_url": "Tandoor URL",
+          "api_token": "API Token",
+          "space_id": "Space ID",
+          "update_interval": "Aktualisierungsintervall (Sekunden)"
+        }
+      },
+      "bring": {
+        "title": "Bring! Integration (Optional)",
+        "description": "Optional: Verbinde Tandoor mit deiner Bring! Einkaufsliste.",
+        "data": {
+          "enable_bring": "Bring! Integration aktivieren",
+          "bring_entity": "Bring! Todo-Entität",
+          "auto_sync": "Automatisch synchronisieren"
+        }
+      },
+      "backup": {
+        "title": "Backup-Monitoring (Optional)",
+        "description": "Optional: Überwache Proxmox-Backups via SSH.",
+        "data": {
+          "enable_backup": "Backup-Monitoring aktivieren",
+          "proxmox_host": "Proxmox Host IP",
+          "container_id": "LXC Container ID",
+          "ssh_user": "SSH Benutzer",
+          "ssh_password": "SSH Passwort (optional)",
+          "ssh_key": "SSH Key Pfad (optional)"
+        }
+      },
+      "versions": {
+        "title": "Versions-Check (Optional)",
+        "description": "Optional: Tandoor-Updates via GitHub überwachen.",
+        "data": {
+          "enable_version_check": "GitHub Update-Check aktivieren",
+          "enable_docker_version": "Installierte Docker-Version via SSH prüfen (benötigt SSH)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Verbindung zu Tandoor fehlgeschlagen. Prüfe die URL.",
+      "invalid_token": "Ungültiger API-Token (401 Unauthorized).",
+      "invalid_space": "Space ID ungültig oder keine Berechtigung (403 Forbidden).",
+      "ssh_cannot_connect": "SSH-Verbindung zu Proxmox fehlgeschlagen.",
+      "ssh_auth_failed": "SSH-Authentifizierung fehlgeschlagen. Prüfe Passwort/Key.",
+      "asyncssh_missing": "asyncssh nicht installiert. Prüfe requirements."
+    },
+    "abort": {
+      "already_configured": "Tandoor ist bereits konfiguriert."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Verbindung anpassen",
+        "description": "Tandoor URL, Token oder Abfrageintervall ändern.",
+        "data": {
+          "tandoor_url": "Tandoor URL",
+          "api_token": "API Token",
+          "space_id": "Space ID",
+          "update_interval": "Aktualisierungsintervall (Sekunden)"
+        }
+      },
+      "features": {
+        "title": "Features",
+        "description": "Features aktivieren oder deaktivieren.",
+        "data": {
+          "enable_bring": "Bring! Integration aktivieren",
+          "bring_entity": "Bring! Todo-Entität",
+          "enable_version_check": "GitHub Update-Check aktivieren",
+          "enable_backup": "Backup-Monitoring aktivieren (SSH)",
+          "enable_docker_version": "Docker-Version prüfen (SSH)"
+        }
+      },
+      "ssh": {
+        "title": "SSH-Zugang (Proxmox)",
+        "description": "SSH-Verbindung zu deinem Proxmox-Host. Wird für Backup-Monitoring und Docker-Versions-Check benötigt.",
+        "data": {
+          "proxmox_host": "Proxmox Host IP",
+          "container_id": "LXC Container ID",
+          "ssh_user": "SSH Benutzer",
+          "ssh_password": "SSH Passwort",
+          "ssh_key": "SSH Key Pfad (optional)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Verbindung zu Tandoor fehlgeschlagen. Prüfe die URL.",
+      "invalid_token": "Ungültiger API-Token.",
+      "invalid_space": "Space ID ungültig oder keine Berechtigung."
+    }
+  }
+}
+
