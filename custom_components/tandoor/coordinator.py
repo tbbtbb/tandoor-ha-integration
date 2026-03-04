@@ -44,7 +44,7 @@ class TandoorDataUpdateCoordinator(DataUpdateCoordinator):
         self._base_url = config[CONF_TANDOOR_URL].rstrip("/")
         self._token = config[CONF_API_TOKEN]
         self._space_id = config.get(CONF_SPACE_ID, 1)
-        self._headers = {"Authorization": f"Token {self._token}"}
+        self._headers = {"Authorization": f"Bearer {self._token}"}
 
         super().__init__(
             hass,
