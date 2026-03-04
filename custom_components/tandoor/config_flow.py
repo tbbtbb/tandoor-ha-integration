@@ -161,7 +161,7 @@ class TandoorConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     ) -> str | None:
         """Test the Tandoor connection. Returns error key or None."""
         session = aiohttp_helper.async_get_clientsession(self.hass)
-        test_url = f"{url.rstrip('/')}/api/meal-plan/?format=json&space={space_id}"
+        test_url = f"{url.rstrip('/')}/api/recipe/?format=json"
         headers = {"Authorization": f"Token {token}"}
         try:
             async with session.get(
@@ -240,7 +240,7 @@ class TandoorOptionsFlow(config_entries.OptionsFlow):
             new_space = user_input.get(CONF_SPACE_ID, DEFAULT_SPACE_ID)
 
             session = aiohttp_helper.async_get_clientsession(self.hass)
-            test_url = f"{new_url.rstrip('/')}/api/meal-plan/?format=json&space={new_space}"
+            test_url = f"{new_url.rstrip('/')}/api/recipe/?format=json"
             headers = {"Authorization": f"Token {new_token}"}
             try:
                 async with session.get(
