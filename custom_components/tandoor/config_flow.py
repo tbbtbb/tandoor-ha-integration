@@ -162,7 +162,7 @@ class TandoorConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         """Test the Tandoor connection. Returns error key or None."""
         session = aiohttp_helper.async_get_clientsession(self.hass)
         test_url = f"{url.rstrip('/')}/api/recipe/?format=json"
-        headers = {"Authorization": f"Token {token}"}
+        headers = {"Authorization": f"Bearer {token}"}
         try:
             async with session.get(
                 test_url, headers=headers, timeout=aiohttp.ClientTimeout(total=10)
@@ -241,7 +241,7 @@ class TandoorOptionsFlow(config_entries.OptionsFlow):
 
             session = aiohttp_helper.async_get_clientsession(self.hass)
             test_url = f"{new_url.rstrip('/')}/api/recipe/?format=json"
-            headers = {"Authorization": f"Token {new_token}"}
+            headers = {"Authorization": f"Bearer {new_token}"}
             try:
                 async with session.get(
                     test_url, headers=headers, timeout=aiohttp.ClientTimeout(total=10)
